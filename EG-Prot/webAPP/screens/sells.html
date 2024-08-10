@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Document</title>
+</head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventas - Mini-ERP</title>
+    <link rel="stylesheet" href="styles/styles.css"> <!-- Mantén tu hoja de estilos -->
+</head>
+<body>
+    <div class="container">
+        <h2>Sección de Ventas</h2>
+        <div class="section-content">
+            <ul>
+                <li><button onclick="loadContent('newSale')">Registrar nueva venta</button></li>
+                <li><button onclick="loadContent('salesHistory')">Ver historial de ventas</button></li>
+                <li><button onclick="loadContent('salesReports')">Generar informes de ventas</button></li>
+                <li><button onclick="loadContent('salesGoals')">Configurar metas de ventas</button></li>
+            </ul>
+        </div>
+        <div id="ajax-content">
+            <!-- Aquí se cargará el contenido dinámico -->
+        </div>
+        <a href="mainPage.html" class="btn">Volver al Inicio</a>
+    </div>
+
+    <script>
+        function loadContent(section) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', section + '.html', true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    document.getElementById('ajax-content').innerHTML = xhr.responseText;
+                } else {
+                    document.getElementById('ajax-content').innerHTML = '<p>Error al cargar el contenido.</p>';
+                }
+            };
+            xhr.send();
+        }
+    </script>
+</body>
+
+</html>
